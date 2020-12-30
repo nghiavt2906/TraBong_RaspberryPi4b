@@ -115,8 +115,8 @@ def saveFile(data, filename, fieldnames):
         writer.writerows(data)
 
 def main():
-    numOfMirals = config['DEFAULT']['NUMBER_OF_MIRALS']
-    numOfTiltmeters = config['DEFAULT']['NUMBER_OF_TILTMETERS']
+    numOfMirals = int(config['DEFAULT']['NUMBER_OF_MIRALS'])
+    numOfTiltmeters = int(config['DEFAULT']['NUMBER_OF_TILTMETERS'])
 
     fieldnames = getFieldnames(numOfTiltmeters, numOfMirals)
 
