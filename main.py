@@ -6,7 +6,7 @@ from gpiozero import MCP3008
 config = configparser.ConfigParser()
 config.read('config.ini')
 
-maxRecordId = config['DEFAULT']['CURRENT_MAX_RECORD_ID']
+maxRecordId = int(config['DEFAULT']['CURRENT_MAX_RECORD_ID'])
 
 def getFieldnames(numOfTiltmeters, numOfMirals):
     fieldnames = ['Id', 'Timestamp']

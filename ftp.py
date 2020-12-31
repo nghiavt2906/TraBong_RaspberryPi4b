@@ -37,7 +37,6 @@ def sendFiles(files):
 def main():
     while True:
         files = listFilenames()
-        print(files)
         if (len(files)):
             sendFiles(files)
 
