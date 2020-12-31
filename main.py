@@ -125,7 +125,7 @@ def main():
 
     data = []
     current_timestamp = datetime.now()
-    filename = 'records/{}.csv'.format(current_timestamp)
+    filename = 'pending/{}.csv'.format(current_timestamp)
     start = time()
 
     while True:
@@ -133,7 +133,7 @@ def main():
             saveFile(data, filename, fieldnames)
             data = []
             current_timestamp = datetime.now()
-            filename = 'records/{}.csv'.format(current_timestamp)
+            filename = 'pending/{}.csv'.format(current_timestamp)
             start = time()
 
         record = readSensors(tiltmeters, mirals)
