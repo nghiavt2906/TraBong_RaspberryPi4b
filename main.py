@@ -104,7 +104,7 @@ def readSensors(tiltmeters, mirals):
     for idx, channel in enumerate(mirals):
         values = readMiral(channel)
         record['Miral{}-Voltage'.format(idx)] = values['Miral-Voltage']
-        record['Miral{}-Linear-Position'] = values['Miral-Linear-Position']
+        record['Miral{}-Linear-Position'.format(idx)] = values['Miral-Linear-Position']
 
     return record
 
