@@ -1,9 +1,12 @@
 import configparser, glob, os, shutil
+from os.path import join
 from time import sleep
 from FTPClient import FTPClient
 
+dirname = os.path.dirname(__file__)
+
 config = configparser.ConfigParser()
-config.read('config.ini')
+config.read(join(dirname, 'config.ini'))
 
 ftp_ip = config['SERVER']['IP']
 ftp_usr = config['SERVER']['FTP_USERNAME'] 
@@ -13,7 +16,7 @@ ftp_client = FTPClient(ftp_ip, ftp_usr, ftp_pwd)
 
 pending_path = 'pending'
 extension = 'csv'
-os.chdir(pending_path)
+os.chdir(join(dirname, pending_path))
 
 def listFilenames():
     files = glob.glob('*.{}'.format(extension))
@@ -26,7 +29,7 @@ def sendFiles(files):
             with open(file, "rb") as file_stream:
                 ftp_client.conn.storbinary("{CMD} {FileName}".format(CMD="STOR", FileName=filename), file_stream)
 
-            shutil.move(file, '../records/{}'.format(file))
+            shutil.move(file, join(dirname, 'records/{}'.format(file)))
     except:
         ftp_client.conn.close()
         try:

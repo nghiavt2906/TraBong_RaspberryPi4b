@@ -1,10 +1,13 @@
-import csv, minimalmodbus, ctypes, configparser
+import csv, minimalmodbus, ctypes, configparser, os
+from os.path import join
 from datetime import datetime
 from time import time, sleep 
 from gpiozero import MCP3008
 
+dirname = os.path.dirname(__file__)
+
 config = configparser.ConfigParser()
-config.read('config.ini')
+config.read(join(dirname, 'config.ini'))
 
 maxRecordId = int(config['DEFAULT']['CURRENT_MAX_RECORD_ID'])
 
@@ -125,7 +128,7 @@ def main():
 
     data = []
     current_timestamp = datetime.now()
-    filename = 'pending/{}.csv'.format(current_timestamp)
+    filename = join(dirname, 'pending/{}.csv'.format(current_timestamp))
     start = time()
 
     while True:
@@ -133,7 +136,7 @@ def main():
             saveFile(data, filename, fieldnames)
             data = []
             current_timestamp = datetime.now()
-            filename = 'pending/{}.csv'.format(current_timestamp)
+            filename = join(dirname, 'pending/{}.csv'.format(current_timestamp))
             start = time()
 
         record = readSensors(tiltmeters, mirals)
