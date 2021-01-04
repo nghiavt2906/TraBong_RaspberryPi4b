@@ -10,10 +10,6 @@ config = configparser.ConfigParser()
 config.read(join(dirname, 'config.ini'))
 
 maxRecordId = int(config['DEFAULT']['CURRENT_MAX_RECORD_ID'])
-checkCurrentMaxRecordId()
-
-def checkCurrentMaxRecordId():
-    pass
 
 def getFieldnames(numOfTiltmeters, numOfMirals):
     fieldnames = ['Id', 'Timestamp']
@@ -122,7 +118,7 @@ def saveFile(data, filename, fieldnames):
         writer.writerows(data)
 
     config.set('DEFAULT', 'CURRENT_MAX_RECORD_ID', str(maxRecordId))
-    with open('config.ini', 'w') as configfile:
+    with open(join(dirname, 'config.ini'), 'w') as configfile:
         config.write(configfile)
 
 def main():
